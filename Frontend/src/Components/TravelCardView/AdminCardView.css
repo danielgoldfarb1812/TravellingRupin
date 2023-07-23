@@ -1,0 +1,49 @@
+ .card-image-container {
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+}
+
+.edit-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.edit-oval-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #dbe76f;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 12px;
+  color: #141313;
+}
+.main-container {
+  padding-top: 20px; /* Adjust the value as needed for desired spacing */
+}
+add-button-container {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.card-container {
+  margin-top: 20px; /* Adjust the value as needed for desired spacing */
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}

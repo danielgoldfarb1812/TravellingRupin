@@ -1,0 +1,13 @@
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    height: 100%;
+    background-image: linear-gradient(rgb(0, 183, 255), black);
+}
+
+a {
+    color: rgb(0, 119, 255);
+}
