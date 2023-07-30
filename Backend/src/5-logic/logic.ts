@@ -25,8 +25,9 @@ async function validateEmail(email) {
   
   //ביצוע שאליתא על טבלת המשתמשים לבדיקת הפרטים של אחד מהם
   async function checkUser(email: string, password: string) {
-    const query = { Email: email, Password: password };
-    console.log("checkUser called: ", email + password);
+    const hashedPassword = dal.hashPassword(password);
+    const query = { Email: email, Password: hashedPassword };
+    console.log("checkUser called: ", email + ' ' + hashedPassword);
     const result = await dal.execute("users", query, "find");
     console.log("checkUser ret: ", JSON.stringify(result));
     // No user found - No access (0)
@@ -45,7 +46,9 @@ async function validateEmail(email) {
     return holidayModels;
   }
  
-  async function addUsers(user) {
+  async function addUsers(user) {    
+    const hashedPassword = dal.hashPassword(user.Password);
+    user.Password = hashedPassword;
     const collectionName = "users";
     const result = await dal.execute(collectionName, {}, "insert", user);
     user.UserCode = result;

@@ -1,5 +1,25 @@
 import { MongoClient, ObjectId, WithId } from "mongodb";
 import config from "./config"; //שליפת כל ההגדרות מקובץ נפרד
+import * as CryptoJS from 'crypto-js'; 
+
+function hashPassword(password: string): string {
+  const hashedPassword = CryptoJS.SHA256(password).toString();
+  return hashedPassword;
+}
+
+const SECRET_KEY = 'RUPIN_KEY';
+
+function encryptPassword(password: string): string {
+  const encryptedPassword = CryptoJS.AES.encrypt(password, SECRET_KEY).toString();
+  return encryptedPassword;
+}
+
+function decryptPassword(encryptedPassword: string): string {
+  const decryptedBytes = CryptoJS.AES.decrypt(encryptedPassword, SECRET_KEY);
+  const decryptedPassword = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  return decryptedPassword;
+}
+
 //חיבור לדאטאבייס
 // כתובת הדאטאבייס במונגו
 const uri = config.mongoUri; // Assuming you have the MongoDB URI in the config file
@@ -61,5 +81,8 @@ async function execute(collectionName: string, query: object, operation: string,
   //ייצוא הפונקציות לשאר האפליחקציה
   export default {
     execute,
-    closeDatabaseConnection
-  };
+    closeDatabaseConnection,
+    encryptPassword,
+    decryptPassword,
+    hashPassword
+    };
